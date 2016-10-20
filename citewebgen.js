@@ -116,13 +116,13 @@ function citationWrapper() {
   metadata["accessdate"] = getDateFromStr(today.toUTCString());
 
   if (useClasses) {
-    var author = document.getElementsByClassName("author")[0].textContent.trim();
-    var date = document.getElementsByClassName("date")[0].textContent.trim();
-    if (!("author" in metadata)) {
-      metadata["author"] = author;
+    var authors = document.getElementsByClassName("author");
+    if (authors.length > 0 && !("author" in metadata)) {
+        metadata["author"] = authors[0].textContent.trim();
     }
-    if (!("date" in metadata)) {
-      metadata["date"] = date;
+    var dates = document.getElementsByClassName("date");
+    if (dates.length > 0 && !("date" in metadata)) {
+        metadata["date"] = dates[0].textContent.trim();
     }
   }
 
