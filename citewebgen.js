@@ -119,6 +119,8 @@ function citationWrapper() {
     metadata["date"] = tryDateParse;
   }
 
+  metadata["quote"] = window.getSelection();
+
   var print_str = "<ref>{{cite web";
   for (var key in metadata) {
     print_str += " |" + key + "=" + metadata[key];
