@@ -112,17 +112,11 @@ function citationWrapper() {
     metadata["date"] = tryDateParse;
   }
 
-  function printCitation(d) {
-    var print_str = "<ref>{{cite web";
-    for (var key in d) {
-      print_str += " |" + key + "=" + metadata[key];
-    }
-    var print_str = print_str + "}}</ref>";
-    return print_str;
+  var print_str = "<ref>{{cite web";
+  for (var key in metadata) {
+    print_str += " |" + key + "=" + metadata[key];
   }
-
-  // prompt("date is", metadata["date"] + " " + metadata["publisher"] + " " + metadata["generator"]);
-  var print_str = printCitation(metadata);
+  print_str += "}}</ref>";
   return print_str;
 }
 var print_str = citationWrapper();
