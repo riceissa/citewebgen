@@ -119,7 +119,10 @@ function citationWrapper() {
     metadata["date"] = tryDateParse;
   }
 
-  metadata["quote"] = window.getSelection();
+  // If text is selected in the page, use that for the "quote" field.
+  if (window.getSelection() != "") {
+    metadata["quote"] = window.getSelection();
+  }
 
   var print_str = "<ref>{{cite web";
   for (var key in metadata) {
