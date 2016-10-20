@@ -73,12 +73,14 @@ function citationWrapper() {
       metadata["author"] = cont;
     } else if (name ==  "DCSext.author") {
       metadata["author"] = cont;
-    } else if (name == "dat") {
-      metadata["date"] = cont;
+    } else if (name == "byl") {
+      metadata["author"] = cont.replace(/^[Bb][Yy] ?/, "");
     } else if (prop == "og:site_name") {
       metadata["publisher"] = cont;
     } else if (name == "cre") {
       metadata["publisher"] = cont;
+    } else if (name == "dat") {
+      metadata["date"] = cont;
     } else if (name == "dcterms.date") {
       metadata["date"] = cont;
     } else if (prop == "article:modified_time") {
@@ -97,6 +99,11 @@ function citationWrapper() {
   // to extract it from the HTML.
   if (location.hostname in publisher_map) {
     metadata["publisher"] = "[[" + publisher_map[location.hostname] + "]]";
+  } else if (location.hostname.split(".").slice(1).join(".") in
+      publisher_map) {
+    metadata["publisher"] = "[[" +
+          publisher_map[location.hostname.split(".").slice(1).join(".")] +
+          "]]";
   }
 
   // MediaWiki uses the bar for separating fields, so escape it.
