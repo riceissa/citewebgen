@@ -1,4 +1,4 @@
-javascript:var Manifest = "Citewebgen, a citeweb citation generator.";
+javascript:var Manifest = "Citewebgen, a cite web citation generator.";
 var publisher_map = {
         "arstechnica.com": "Ars Technica",
         "bloomberg.com": "Businessweek",
