@@ -1,4 +1,5 @@
 javascript:var Manifest = "Citewebgen, a cite web citation generator.";
+var useClasses = true;
 var publisher_map = {
         "arstechnica.com": "Ars Technica",
         "bloomberg.com": "Businessweek",
@@ -113,6 +114,17 @@ function citationWrapper() {
 
   var today = new Date();
   metadata["accessdate"] = getDateFromStr(today.toUTCString());
+
+  if (useClasses) {
+    var author = document.getElementsByClassName("author")[0].textContent.trim();
+    var date = document.getElementsByClassName("date")[0].textContent.trim();
+    if (!("author" in metadata)) {
+      metadata["author"] = author;
+    }
+    if (!("date" in metadata)) {
+      metadata["date"] = date;
+    }
+  }
 
   var tryDateParse = getDateFromStr(metadata["date"]);
   if (tryDateParse) {
