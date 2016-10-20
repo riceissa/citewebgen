@@ -1,4 +1,8 @@
 javascript:var Manifest = "Citewebgen, a cite web citation generator.";
+// Some sites, like EconLog, use class="date" multiple times on a page and in
+// an unpredictable order. It may therefore be preferable to not attempt to use
+// class fields and to instead manually enter in some information. Set this to
+// false in such cases.
 var useClasses = true;
 var publisher_map = {
         "arstechnica.com": "Ars Technica",
