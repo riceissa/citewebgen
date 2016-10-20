@@ -16,4 +16,4 @@ public domain.
 
 [rs]: https://en.wikipedia.org/wiki/User:Ark25/RefScript
 [cw]: https://en.wikipedia.org/wiki/Template:Cite_web
-[mini]: https://raw.githubusercontent.com/riceissa/citewebgen/master/citewebgen.js
+[mini]: https://raw.githubusercontent.com/riceissa/citewebgen/master/minified.js
