@@ -63,7 +63,7 @@ function citationWrapper() {
   for (var i = 0; i < meta_tags.length; i++) {
     var name = meta_tags.item(i).name;
     var prop = meta_tags.item(i).getAttribute("property");
-    var cont = meta_tags.item(i).content;
+    var cont = meta_tags.item(i).content.trim();
     if (prop == "og:title") {
       metadata["title"] = cont;
     } else if (name == "title") {
