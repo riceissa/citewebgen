@@ -145,7 +145,15 @@ function citationWrapper() {
     print_str += " |" + key + "=" + metadata[key];
   }
   print_str += "}}</ref>";
-  return print_str;
+
+  var verbose_str = "The following metadata were detected:\n\n";
+  for (var key in metadata) {
+    verbose_str += key + " = " + metadata[key] + "\n";
+  }
+  verbose_str += "\nYou can copy this reference:";
+
+  return [print_str, verbose_str];
 }
-var print_str = citationWrapper();
-var s = prompt("Copy this reference:", print_str);
+var res = citationWrapper();
+// var s = prompt("Copy this reference:", print_str);
+var s = prompt(res[1], res[0]);
