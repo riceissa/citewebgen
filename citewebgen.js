@@ -152,8 +152,8 @@ function citationWrapper() {
   }
   verbose_str += "\nYou can copy this reference:";
 
-  return [print_str, verbose_str];
+  return [verbose_str, print_str];
 }
 var res = citationWrapper();
 // var s = prompt("Copy this reference:", print_str);
-var s = prompt(res[1], res[0]);
+var s = prompt(res[0], res[1]);
