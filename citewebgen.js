@@ -68,29 +68,18 @@ function citationWrapper() {
     var name = meta_tags.item(i).name;
     var prop = meta_tags.item(i).getAttribute("property");
     var cont = meta_tags.item(i).content.trim();
-    if (prop == "og:title") {
+    if (prop == "og:title" || name == "title") {
       metadata["title"] = cont;
-    } else if (name == "title") {
-      metadata["title"] = cont;
-    } else if (name == "author") {
-      metadata["author"] = cont;
-    } else if (name == "article:author_name") {
-      metadata["author"] = cont;
-    } else if (name ==  "DCSext.author") {
+    } else if (name == "author" || name == "article:author_name" ||
+                    name ==  "DCSext.author") {
       metadata["author"] = cont;
     } else if (name == "byl") {
-      metadata["author"] = cont.replace(/^[Bb][Yy] ?/, "");
-    } else if (prop == "og:site_name") {
+      metadata["author"] = cont.replace(/^[Bb][Yy] /, "");
+    } else if (prop == "og:site_name" || name == "cre") {
       metadata["publisher"] = cont;
-    } else if (name == "cre") {
-      metadata["publisher"] = cont;
-    } else if (name == "dat") {
-      metadata["date"] = cont;
-    } else if (name == "dcterms.date") {
-      metadata["date"] = cont;
-    } else if (prop == "article:modified_time") {
-      metadata["date"] = cont;
-    } else if (prop == "article:published_time") {
+    } else if (name == "dat" || name == "dcterms.date" ||
+                    prop == "article:modified_time" ||
+                    prop == "article:published_time") {
       metadata["date"] = cont;
     }
   }
