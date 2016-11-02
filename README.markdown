@@ -7,6 +7,13 @@
 Citewebgen is a [Cite web][cw] generator. It is a single JavaScript file that
 can be installed as a bookmarklet on a browser.
 
+## Features
+
+- Detection of all common fields
+- Support for the `quote` field if text is selected on the page
+- Date reported in UTC
+- Works on all browsers supporting JavaScript
+
 ## Installation
 
 You can install the script by copying the contents of the [minified
