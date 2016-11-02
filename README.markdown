@@ -1,5 +1,9 @@
 # Citewebgen
 
+![Example output](citeweb_example.png)
+
+(from <http://www.wikihow.com/Archive-Websites-on-Unix-Like-Systems>)
+
 Citewebgen is a [Cite web][cw] generator. It is a single JavaScript file that
 can be installed as a bookmarklet on a browser.
 
