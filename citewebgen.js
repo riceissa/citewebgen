@@ -79,7 +79,9 @@ function citationWrapper() {
       metadata["publisher"] = cont;
     } else if (name == "dat" || name == "dcterms.date" ||
                     prop == "article:modified_time" ||
-                    prop == "article:published_time") {
+                    prop == "article:published_time" ||
+                    name == "date" ||
+                    name == "DC.date.issued") {
       metadata["date"] = cont;
     }
   }
