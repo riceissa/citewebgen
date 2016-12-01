@@ -104,7 +104,7 @@ function citationWrapper() {
 
   // MediaWiki uses the bar for separating fields, so escape it.
   if ("title" in metadata) {
-    metadata["title"] = metadata["title"].replace(/\|/, "{{!}}");
+    metadata["title"] = metadata["title"].replace(/\|/g, "{{!}}");
   }
 
   var today = new Date();
