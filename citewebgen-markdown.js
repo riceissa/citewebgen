@@ -94,18 +94,16 @@ function citationWrapper() {
   // If the base URL is in our hard-coded map, then use that instead of trying
   // to extract it from the HTML.
   if (location.hostname in publisher_map) {
-    metadata["publisher"] = "[[" + publisher_map[location.hostname] + "]]";
+    metadata["publisher"] = publisher_map[location.hostname];
   } else if (location.hostname.split(".").slice(1).join(".") in
       publisher_map) {
-    metadata["publisher"] = "[[" +
-          publisher_map[location.hostname.split(".").slice(1).join(".")] +
-          "]]";
+    metadata["publisher"] = publisher_map[location.hostname.split(".").slice(1).join(".")];
   }
 
   // MediaWiki uses the bar for separating fields, so escape it.
-  if ("title" in metadata) {
-    metadata["title"] = metadata["title"].replace(/\|/g, "{{!}}");
-  }
+  // if ("title" in metadata) {
+  //   metadata["title"] = metadata["title"].replace(/\|/g, "{{!}}");
+  // }
 
   var today = new Date();
   metadata["accessdate"] = getDateFromStr(today.toUTCString());
@@ -131,11 +129,23 @@ function citationWrapper() {
     metadata["quote"] = window.getSelection();
   }
 
-  var print_str = "<ref>{{cite web";
-  for (var key in metadata) {
-    print_str += " |" + key + "=" + metadata[key];
+  var print_str = metadata["url"] + ' "';
+
+  if ("author" in metadata) {
+    print_str += metadata["author"] + ". ";
   }
-  print_str += "}}</ref>";
+  if ("title" in metadata) {
+    print_str += '“' + metadata["title"] + '”. ';
+  }
+  if ("publisher" in metadata) {
+    print_str += metadata["publisher"] + ". ";
+  }
+  if ("date" in metadata) {
+    print_str += metadata["date"] + ". ";
+  }
+  print_str += "Retrieved " + metadata["accessdate"] + ".";
+  // print_str = print_str.trim();
+  print_str += '"';
 
   var verbose_str = "The following metadata were detected:\n\n";
   for (var key in metadata) {
