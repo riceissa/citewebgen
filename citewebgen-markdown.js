@@ -66,12 +66,21 @@ function citationWrapper() {
 
   for (var i = 0; i < meta_tags.length; i++) {
     var name = meta_tags.item(i).name;
+    if (name) {
+      name = name.trim().toLowerCase();
+    }
     var prop = meta_tags.item(i).getAttribute("property");
-    var cont = meta_tags.item(i).content.trim();
+    if (prop) {
+      prop = prop.trim().toLowerCase();
+    }
+    var cont = meta_tags.item(i).content;
+    if (cont) {
+      cont = cont.trim();
+    }
     if (prop == "og:title" || name == "title") {
       metadata["title"] = cont;
     } else if (name == "author" || name == "article:author_name" ||
-                    name ==  "DCSext.author") {
+                    name ==  "dcsext.author") {
       metadata["author"] = cont;
     } else if (name == "byl") {
       metadata["author"] = cont.replace(/^[Bb][Yy] /, "");
@@ -83,7 +92,8 @@ function citationWrapper() {
                     name == "date" ||
                     name == "timestamp" ||
                     name == "sailthru.date" ||
-                    name == "DC.date.issued") {
+                    name == "displaydate" ||
+                    name == "dc.date.issued") {
       metadata["date"] = cont;
     }
   }
