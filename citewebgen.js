@@ -81,6 +81,8 @@ function citationWrapper() {
                     prop == "article:modified_time" ||
                     prop == "article:published_time" ||
                     name == "date" ||
+                    name == "timestamp" ||
+                    name == "sailthru.date" ||
                     name == "DC.date.issued") {
       metadata["date"] = cont;
     }
