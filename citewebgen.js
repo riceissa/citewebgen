@@ -35,6 +35,7 @@ var publisher_map = {
         "washingtonpost.com": "The Washington Post",
         "who.int": "World Health Organization",
         "wikipedia.org": "Wikipedia",
+        "wired.com": "WIRED",
         "wsj.com": "The Wall Street Journal"
 };
 
