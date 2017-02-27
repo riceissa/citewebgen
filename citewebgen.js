@@ -115,11 +115,6 @@ function citationWrapper() {
           "]]";
   }
 
-  // MediaWiki uses the bar for separating fields, so escape it.
-  if ("title" in metadata) {
-    metadata["title"] = metadata["title"].replace(/\|/g, "{{!}}");
-  }
-
   var today = new Date();
   metadata["accessdate"] = getDateFromStr(today.toUTCString());
 
@@ -142,6 +137,21 @@ function citationWrapper() {
   // If text is selected in the page, use that for the "quote" field.
   if (window.getSelection() != "") {
     metadata["quote"] = window.getSelection();
+  }
+
+  // Perform some simple replacements to ensure the result conforms to the
+  // Manual of Style.
+  for (var key in metadata) {
+    var val = metadata[key];
+    val = val.replace(/[“”]/g, '"');
+    val = val.replace(/[‘’]/g, "'");
+    val = val.replace(/--/g, "–");
+    val = val.replace(/\n/g, " ");
+
+    // MediaWiki uses the bar for separating fields, so escape it.
+    val = val.replace(/\|/g, "{{!}}");
+
+    metadata[key] = val;
   }
 
   var print_str = "<ref>{{cite web";
