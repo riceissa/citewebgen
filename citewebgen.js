@@ -136,7 +136,7 @@ function citationWrapper() {
 
   // If text is selected in the page, use that for the "quote" field.
   if (window.getSelection() != "") {
-    metadata["quote"] = window.getSelection();
+    metadata["quote"] = window.getSelection().toString();
   }
 
   // Perform some simple replacements to ensure the result conforms to the
