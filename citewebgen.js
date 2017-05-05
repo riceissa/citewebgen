@@ -109,22 +109,6 @@ function citationWrapper() {
     metadata["title"] = document.title;
   }
 
-  // If the base URL is in our hard-coded map, then use that instead of trying
-  // to extract it from the HTML.
-  if (location.hostname in publisher_map) {
-    var pub = publisher_map[location.hostname];
-  } else if (location.hostname.split(".").slice(1).join(".") in
-      publisher_map) {
-    var pub = publisher_map[location.hostname.split(".").slice(1).join(".")];
-  }
-  if (pub) {
-    if (onWikipedia) {
-      metadata["publisher"] = "[[" + pub + "]]";
-    } else {
-      metadata["publisher"] = "[[wikipedia:" + pub + "|" + pub + "]]";
-    }
-  }
-
   var today = new Date();
   metadata["accessdate"] = getDateFromStr(today.toUTCString());
 
@@ -162,6 +146,22 @@ function citationWrapper() {
     val = val.replace(/\|/g, "{{!}}");
 
     metadata[key] = val;
+  }
+
+  // If the base URL is in our hard-coded map, then use that instead of trying
+  // to extract it from the HTML.
+  if (location.hostname in publisher_map) {
+    var pub = publisher_map[location.hostname];
+  } else if (location.hostname.split(".").slice(1).join(".") in
+      publisher_map) {
+    var pub = publisher_map[location.hostname.split(".").slice(1).join(".")];
+  }
+  if (pub) {
+    if (onWikipedia) {
+      metadata["publisher"] = "[[" + pub + "]]";
+    } else {
+      metadata["publisher"] = "[[wikipedia:" + pub + "|" + pub + "]]";
+    }
   }
 
   var print_str = "<ref>{{cite web";
