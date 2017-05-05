@@ -4,6 +4,11 @@ javascript:var Manifest = "Citewebgen, a cite web citation generator.";
 // class fields and to instead manually enter in some information. Set this to
 // false in such cases.
 var useClasses = false;
+// If we are writing an article on Wikipedia, then wikilinks to Wikipedia pages
+// can be done with "[[page]]", but if we are not writing for Wikipedia, then
+// wikilinks to Wikipedia must be done with "[[wikipedia:page|page]]". This
+// variable allows the user to specify whether they are writing for Wikipedia.
+var onWikipedia = true;
 var publisher_map = {
         "arstechnica.com": "Ars Technica",
         "bloomberg.com": "Businessweek",
@@ -107,12 +112,17 @@ function citationWrapper() {
   // If the base URL is in our hard-coded map, then use that instead of trying
   // to extract it from the HTML.
   if (location.hostname in publisher_map) {
-    metadata["publisher"] = "[[" + publisher_map[location.hostname] + "]]";
+    var pub = publisher_map[location.hostname];
   } else if (location.hostname.split(".").slice(1).join(".") in
       publisher_map) {
-    metadata["publisher"] = "[[" +
-          publisher_map[location.hostname.split(".").slice(1).join(".")] +
-          "]]";
+    var pub = publisher_map[location.hostname.split(".").slice(1).join(".")];
+  }
+  if (pub) {
+    if (onWikipedia) {
+      metadata["publisher"] = "[[" + pub + "]]";
+    } else {
+      metadata["publisher"] = "[[wikipedia:" + pub + "|" + pub + "]]";
+    }
   }
 
   var today = new Date();
