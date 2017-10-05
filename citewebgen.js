@@ -164,6 +164,20 @@ function citationWrapper() {
     }
   }
 
+  // Check for common archival services
+  if (document.URL.match(/\/\/archive\.is\//)) {
+    metadata["archiveurl"] = metadata["url"];
+    if ("date" in metadata) {
+      metadata["archivedate"] = metadata["date"];
+    }
+    metadata["url"] = document.querySelectorAll("input")[0].value;
+    delete metadata["date"];
+    delete metadata["publisher"];
+  } else if (document.URL.match(/\/\/web\.archive\.org\/web\//)) {
+    metadata["archiveurl"] = metadata["url"];
+    metadata["url"] = document.querySelectorAll("input#wmtbURL")[0].value;
+  }
+
   var print_str = "<ref>{{cite web";
   for (var key in metadata) {
     print_str += " |" + key + "=" + metadata[key];
