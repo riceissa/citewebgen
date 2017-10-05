@@ -176,6 +176,9 @@ function citationWrapper() {
   } else if (document.URL.match(/\/\/web\.archive\.org\/web\//)) {
     metadata["archiveurl"] = metadata["url"];
     metadata["url"] = document.querySelectorAll("input#wmtbURL")[0].value;
+    var date_part = document.URL.match(/\/\/web\.archive\.org\/web\/\d{8}/)[0].substr(-8);
+    metadata["archivedate"] = getDateFromStr(date_part.substr(0,4) + "-" +
+      date_part.substr(4,2) + "-" + date_part.substr(6,2));
   }
 
   var print_str = "<ref>{{cite web";
