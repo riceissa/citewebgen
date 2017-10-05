@@ -28,6 +28,18 @@ Chrome:
 
 ![Example output](citeweb_example.png)
 
+## Caveats
+
+On Firefox, some websites (e.g. GitHub and Twitter) block bookmarklets from
+executing. If you have the developer console open while trying to run the
+script, you will see the following message:
+
+> Content Security Policy: The page’s settings blocked the loading of a
+> resource at self
+
+I'm not sure how to fix this on Firefox, but one workaround is to open the same
+page on Chrome and run Citewebgen there.
+
 ## Acknowledgements
 
 Special thanks to Ark25 for creating and hosting [RefScript][rs]. I referred to
