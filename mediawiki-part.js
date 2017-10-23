@@ -39,13 +39,7 @@ function citationWrapper() {
   }
   print_str += "}}</ref>";
 
-  var verbose_str = "The following metadata were detected:\n\n";
-  for (var key in metadata) {
-    verbose_str += key + " = " + metadata[key] + "\n";
-  }
-  verbose_str += "\nYou can copy this reference:";
-
-  return [verbose_str, print_str];
+  return [verboseStr(metadata), print_str];
 }
 var res = citationWrapper();
 // var s = prompt("Copy this reference:", print_str);

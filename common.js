@@ -161,3 +161,13 @@ function getMetadata() {
 
   return metadata;
 }
+
+function verboseStr(metadata) {
+  var verbose_str = "The following metadata were detected:\n\n";
+  for (var key in metadata) {
+    verbose_str += key + " = " + metadata[key] + "\n";
+  }
+  verbose_str += "\nYou can copy this reference:";
+
+  return verbose_str;
+}
