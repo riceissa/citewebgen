@@ -1,8 +1,4 @@
-// We don't want to return anything from this script, so wrap the main part in
-// a function...
-function citationWrapper() {
-  var metadata = getMetadata();
-
+function printStr(metadata) {
   if ("archiveurl" in metadata) {
     var print_str = metadata["archiveurl"] + ' "';
   } else {
@@ -33,8 +29,5 @@ function citationWrapper() {
   // print_str = print_str.trim();
   print_str += '"';
 
-  return [verboseStr(metadata), print_str];
+  return print_str;
 }
-var res = citationWrapper();
-// var s = prompt("Copy this reference:", print_str);
-var s = prompt(res[0], res[1]);

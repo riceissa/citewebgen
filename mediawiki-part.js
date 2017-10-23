@@ -4,10 +4,7 @@
 // variable allows the user to specify whether they are writing for Wikipedia.
 var onWikipedia = true;
 
-// We don't want to return anything from this script, so wrap the main part in
-// a function...
-function citationWrapper() {
-  var metadata = getMetadata();
+function printStr(metadata) {
   // Perform some simple replacements to ensure the result conforms to the
   // Manual of Style.
   for (var key in metadata) {
@@ -39,8 +36,5 @@ function citationWrapper() {
   }
   print_str += "}}</ref>";
 
-  return [verboseStr(metadata), print_str];
+  return print_str;
 }
-var res = citationWrapper();
-// var s = prompt("Copy this reference:", print_str);
-var s = prompt(res[0], res[1]);
