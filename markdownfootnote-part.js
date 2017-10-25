@@ -27,7 +27,11 @@ function printStr(metadata) {
     }
   }
 
-  res += "Retrieved " + metadata["accessdate"] + ".";
+  res += "Retrieved " + metadata["accessdate"] + ". ";
 
-  return res;
+  if ("quote" in metadata) {
+      res += '“' + metadata["quote"] + '”';
+  }
+
+  return res.trim();
 }
