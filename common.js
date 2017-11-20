@@ -59,6 +59,15 @@ function getDateFromStr(s) {
   }
 }
 
+function freshArchive(today, archiveDate) {
+  var numDaysDiff = (today - archiveDate) / (1000*60*60*24);
+  if (numDaysDiff > 2) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 function getMetadata() {
   var meta_tags = document.getElementsByTagName("meta");
 
@@ -141,7 +150,9 @@ function getMetadata() {
   }
 
   // Check for common archival services
+  var inArchive = false;
   if (document.URL.match(/\/\/archive\.is\//)) {
+    inArchive = true;
     metadata["archiveurl"] = metadata["url"];
     if ("date" in metadata) {
       metadata["archivedate"] = metadata["date"];
@@ -149,14 +160,27 @@ function getMetadata() {
     metadata["url"] = document.querySelectorAll("input")[0].value;
     delete metadata["date"];
     delete metadata["publisher"];
-    metadata["dead-url"] = "no";
   } else if (document.URL.match(/\/\/web\.archive\.org\/web\//)) {
+    inArchive = true;
     metadata["archiveurl"] = metadata["url"];
     metadata["url"] = document.querySelectorAll("input#wmtbURL")[0].value;
     var date_part = document.URL.match(/\/\/web\.archive\.org\/web\/\d{8}/)[0].substr(-8);
     metadata["archivedate"] = getDateFromStr(date_part.substr(0,4) + "-" +
       date_part.substr(4,2) + "-" + date_part.substr(6,2));
-    metadata["dead-url"] = "no";
+  }
+
+  if (inArchive) {
+    var parsed = Date.parse(metadata["archivedate"]);
+    if (parsed) {
+      var archiveDate = new Date(parsed);
+      if (!freshArchive(today, archiveDate)) {
+        metadata["dead-url"] = "yes";
+      }
+    }
+    // If dead-url wasn't set by the above, defaul to "no"
+    if (!("dead-url" in metadata)) {
+      metadata["dead-url"] = "no";
+    }
   }
 
   return metadata;
