@@ -50,7 +50,7 @@ In this section, by "filetype" we mean the output formats, like MediaWiki,
 Markdown, or Markdown footnote.
 Citewebgen is written in a modular way, so that it is possible to easily add
 new filetypes.
-The files `common.js` and `main.js` are used for all filetype.
+The files `common.js` and `main.js` are used for all filetypes.
 To add a new filetype, all you need to do is implement the `printStr`
 function. This function takes as input a dictionary called `metadata` with all
 of the metadata in separate key-value pairs. The function must return a string.
