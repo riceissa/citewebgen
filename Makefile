@@ -1,5 +1,5 @@
 .PHONY: all
-all: mediawiki-minified.js markdown-minified.js markdownfootnote-minified.js mediawikinotemplate-minified.js
+all: mediawiki-minified.js markdown-minified.js markdownfootnote-minified.js mediawikinotemplate-minified.js aiwatchsql-minified.js
 
 mediawiki-minified.js: common.js mediawiki-part.js main.js
 	(echo 'javascript:(function(){' && cat common.js mediawiki-part.js main.js && echo '})();') > temp.js
@@ -20,3 +20,8 @@ mediawikinotemplate-minified.js: common.js mediawikinotemplate-part.js main.js
 	(echo 'javascript:(function(){' && cat common.js mediawikinotemplate-part.js main.js && echo '})();') > temp4.js
 	yui-compressor temp4.js > "$@"
 	rm -f temp4.js
+
+aiwatchsql-minified.js: common.js aiwatchsql-part.js main.js
+	(echo 'javascript:(function(){' && cat common.js aiwatchsql-part.js main.js && echo '})();') > temp5.js
+	yui-compressor temp5.js > "$@"
+	rm -f temp5.js
