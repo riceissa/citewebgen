@@ -20,14 +20,14 @@ function printStr(metadata) {
     result += metadata["publisher"] + ". ";
   }
   if ("archiveurl" in metadata) {
-    res += "Archived from [" + metadata["url"] + " the original] ";
+    result += "Archived from [" + metadata["url"] + " the original] ";
     if ("archivedate" in metadata) {
-      res += "on " + getDateFromStr(metadata["archivedate"]) + ". ";
+      result += "on " + getDateFromStr(metadata["archivedate"]) + ". ";
     }
   }
   result += "Retrieved " + metadata["accessdate"] + ". ";
   if ("quote" in metadata) {
-      res += '"' + metadata["quote"] + '" ';
+      result += '"' + metadata["quote"] + '" ';
   }
   result = result.trim();
   result += "</ref>";
