@@ -1,5 +1,15 @@
 function printStr(metadata) {
-  var result = "[" + metadata["url"];
+  if ("archiveurl" in metadata) {
+    var url = metadata["archiveurl"];
+  } else {
+    var url = metadata["url"];
+  }
+
+  var result = "<ref>";
+  if ("author" in metadata) {
+    result += metadata["author"] + ". ";
+  }
+  result += "[" + url;
   if ("title" in metadata) {
     result += ' "' + metadata["title"] + '"].';
   }
@@ -9,6 +19,16 @@ function printStr(metadata) {
   if ("publisher" in metadata) {
     result += " " + metadata["publisher"] + ".";
   }
-  result += " " + metadata["accessdate"] + ".";
+  if ("archiveurl" in metadata) {
+    res += "Archived from [" + metadata["url"] + " the original]";
+    if ("archivedate" in metadata) {
+      res += "on " + getDateFromStr(metadata["archivedate"]) + ". ";
+    }
+  }
+  result += "Retrieved " + metadata["accessdate"] + ".";
+  if ("quote" in metadata) {
+      res += '"' + metadata["quote"] + '"';
+  }
+  result += "</ref>";
   return result;
 }
