@@ -11,24 +11,25 @@ function printStr(metadata) {
   }
   result += "[" + url;
   if ("title" in metadata) {
-    result += ' "' + metadata["title"] + '"].';
+    result += '"' + metadata["title"] + '"]. ';
   }
   if ("date" in metadata) {
-    result += " " + metadata["date"] + ".";
+    result += metadata["date"] + ". ";
   }
   if ("publisher" in metadata) {
-    result += " " + metadata["publisher"] + ".";
+    result += metadata["publisher"] + ". ";
   }
   if ("archiveurl" in metadata) {
-    res += "Archived from [" + metadata["url"] + " the original]";
+    res += "Archived from [" + metadata["url"] + " the original] ";
     if ("archivedate" in metadata) {
       res += "on " + getDateFromStr(metadata["archivedate"]) + ". ";
     }
   }
-  result += "Retrieved " + metadata["accessdate"] + ".";
+  result += "Retrieved " + metadata["accessdate"] + ". ";
   if ("quote" in metadata) {
-      res += '"' + metadata["quote"] + '"';
+      res += '"' + metadata["quote"] + '" ';
   }
+  result = result.trim();
   result += "</ref>";
   return result;
 }
