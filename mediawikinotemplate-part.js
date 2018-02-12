@@ -9,7 +9,7 @@ function printStr(metadata) {
   if ("author" in metadata) {
     result += metadata["author"] + ". ";
   }
-  result += "[" + url;
+  result += "[" + url + " ";
   if ("title" in metadata) {
     result += '"' + metadata["title"] + '"]. ';
   }
