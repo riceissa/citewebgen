@@ -149,6 +149,21 @@ function getMetadata() {
     metadata["publisher"] = pub;
   }
 
+  // Special settings for LesserWrong
+  if (location.hostname == "www.lesserwrong.com") {
+    try {
+      metadata["date"] = getDateFromStr(document.getElementsByClassName("posts-page-content-body-metadata-date").item(0).innerText);
+    } catch(err) {
+      // Ignore if this doesn't work
+    }
+
+    try {
+      metadata["author"] = document.getElementsByClassName("posts-page-content-header-author").item(0).innerText;
+    } catch(err) {
+      // Ignore if this doesn't work
+    }
+  }
+
   // Check for common archival services
   var inArchive = false;
   if (document.URL.match(/\/\/archive\.is\//)) {
