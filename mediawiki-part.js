@@ -2,7 +2,7 @@
 // can be done with "[[page]]", but if we are not writing for Wikipedia, then
 // wikilinks to Wikipedia must be done with "[[wikipedia:page|page]]". This
 // variable allows the user to specify whether they are writing for Wikipedia.
-var onWikipedia = true;
+var onWikipedia = false;
 
 function printStr(metadata) {
   // Perform some simple replacements to ensure the result conforms to the
