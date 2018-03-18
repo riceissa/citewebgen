@@ -178,7 +178,13 @@ function getMetadata() {
   } else if (document.URL.match(/\/\/web\.archive\.org\/web\//)) {
     inArchive = true;
     metadata["archiveurl"] = metadata["url"];
-    metadata["url"] = document.querySelectorAll("input#wmtbURL")[0].value;
+    // encodeURI() makes sure the spaces in the Internet Archive URL
+    // box get converted to the URL-encoded "%20". For some reason,
+    // using .replace(/ /g, "%20") doesn't work here, I think possibly
+    // because the script is invoked from a bookmarklet, so it can't
+    // distinguish between an encoded space and a literal space. That
+    // sounds messed up though, so I'm hoping I'm wrong.
+    metadata["url"] = encodeURI(document.querySelectorAll("input#wmtbURL")[0].value);
     var date_part = document.URL.match(/\/\/web\.archive\.org\/web\/\d{8}/)[0].substr(-8);
     metadata["archivedate"] = getDateFromStr(date_part.substr(0,4) + "-" +
       date_part.substr(4,2) + "-" + date_part.substr(6,2));
