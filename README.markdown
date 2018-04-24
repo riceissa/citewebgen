@@ -44,6 +44,10 @@ script, you will see the following message:
 I'm not sure how to fix this on Firefox, but one workaround is to open the same
 page on Chrome and run Citewebgen there.
 
+See [here](https://bugzilla.mozilla.org/show_bug.cgi?id=866522)
+or [here](https://stackoverflow.com/questions/19822716/javascript-bookmarklet-on-site-with-csp-in-firefox?lq=1)
+for more information.
+
 ## Adding a new filetype
 
 In this section, by "filetype" we mean the output formats, like MediaWiki,
