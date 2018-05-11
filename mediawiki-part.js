@@ -9,15 +9,21 @@ function printStr(metadata) {
   // Manual of Style.
   for (var key in metadata) {
     var val = metadata[key];
-    val = val.replace(/[“”]/g, '"');
-    val = val.replace(/[‘’]/g, "'");
-    val = val.replace(/--/g, "–");
-    val = val.replace(/\n/g, " ");
+    // For some reason, greaterwrong.com adds an "isEmpty" key with a function
+    // stored at that place to any dictionary I define on the site. The
+    // typeof() for that entry is "function" so that gets skipped over in this
+    // loop.
+    if (typeof(val) === "string") {
+      val = val.replace(/[“”]/g, '"');
+      val = val.replace(/[‘’]/g, "'");
+      val = val.replace(/--/g, "–");
+      val = val.replace(/\n/g, " ");
 
-    // MediaWiki uses the bar for separating fields, so escape it.
-    val = val.replace(/\|/g, "{{!}}");
+      // MediaWiki uses the bar for separating fields, so escape it.
+      val = val.replace(/\|/g, "{{!}}");
 
-    metadata[key] = val;
+      metadata[key] = val;
+    }
   }
 
   var pub = metadata["publisher"];
@@ -32,7 +38,9 @@ function printStr(metadata) {
 
   var print_str = "<ref>{{cite web";
   for (var key in metadata) {
-    print_str += " |" + key + "=" + metadata[key];
+    if (typeof(metadata[key]) === "string") {
+      print_str += " |" + key + "=" + metadata[key];
+    }
   }
   print_str += "}}</ref>";
 

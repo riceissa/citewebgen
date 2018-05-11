@@ -210,7 +210,13 @@ function getMetadata() {
 function verboseStr(metadata) {
   var verbose_str = "The following metadata were detected:\n\n";
   for (var key in metadata) {
-    verbose_str += key + " = " + metadata[key] + "\n";
+    // For some reason, greaterwrong.com adds an "isEmpty" key with a function
+    // stored at that place to any dictionary I define on the site. The
+    // typeof() for that entry is "function" so that gets skipped over in this
+    // loop.
+    if (typeof(metadata[key]) === "string") {
+      verbose_str += key + " = " + metadata[key] + "\n";
+    }
   }
   verbose_str += "\nYou can copy this reference:";
 
