@@ -149,8 +149,8 @@ function getMetadata() {
     metadata["publisher"] = pub;
   }
 
-  // Special settings for LesserWrong
-  if (location.hostname == "www.lesserwrong.com") {
+  // Special settings for LessWrong
+  if (location.hostname == "www.lesswrong.com") {
     try {
       metadata["date"] = getDateFromStr(document.getElementsByClassName("posts-page-content-body-metadata-date").item(0).innerText);
     } catch(err) {
@@ -162,6 +162,23 @@ function getMetadata() {
     } catch(err) {
       // Ignore if this doesn't work
     }
+  }
+
+  // Special settings for greaterwrong.com
+  if (location.hostname == "www.greaterwrong.com") {
+    try {
+      metadata["date"] = getDateFromStr(document.getElementsByClassName("post-meta")[0].getElementsByClassName("date")[0].innerText);
+    } catch(err) {
+      // Ignore if this doesn't work
+    }
+
+    try {
+      metadata["author"] = document.getElementsByClassName("post-meta")[0].getElementsByClassName("author")[0].text;
+    } catch(err) {
+      // Ignore if this doesn't work
+    }
+
+    metadata["title"] = metadata["title"].replace(/ - LessWrong 2 viewer/,'');
   }
 
   // Check for common archival services
